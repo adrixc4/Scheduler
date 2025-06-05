@@ -1,0 +1,59 @@
+{
+  "name": "scheduleruwu",
+  "displayName": "SchedulerUwu",
+  "version": "1.0.1",
+  "description": "Aplicacion creada con mucho amor por adri para llarita",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cordova-android": "^14.0.1",
+    "cordova-electron": "^4.0.0",
+    "cordova-hot-code-push-plugin": "^1.5.3",
+    "cordova-plugin-app-version": "^0.1.14",
+    "cordova-plugin-inappbrowser": "^6.0.0"
+  },
+  "build": {
+    "appId": "com.tuempresa.miapp",
+    "productName": "SchedulerUwu",
+    "publish": [
+    {
+      "provider": "github",
+      "owner": "adrixc4",
+      "repo": "tu-repo"
+    }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "${productName} ${version}.${ext}",
+      "perMachine": true
+    }
+  },
+  "cordova": {
+    "platforms": [
+      "electron",
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-app-version": {},
+      "cordova-plugin-inappbrowser": {}
+    }
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "electron-updater": "^6.6.2",
+    "express": "^5.1.0"
+  }
+}
