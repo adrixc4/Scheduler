@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SchedulerUwU</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #ffe4ec, #ffc0cb);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background-color: #fff0f5;
+      padding: 1.5rem 2rem;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(255, 105, 180, 0.7);
+      width: 320px;
+      text-align: center;
+    }
+
+    .login-container img {
+      margin-bottom: -10px;
+      width: 100px;
+    }
+
+    .login-container h1 {
+      font-family: 'Pacifico', cursive;
+      color: #e75480;
+      margin-bottom: 15px;
+    }
+
+    form {
+      margin-top: 10px;
+    }
+
+    /* Contenedor para input + label flotante */
+    .input-group {
+      position: relative;
+      margin: 18px 0 25px;
+      width: 100%;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 10px 2px 2px;
+      font-size: 1rem;
+      border: none;
+      border-bottom: 2.5px solid #ffb6c1;
+      background: transparent;
+      color: #d14780;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      border-bottom-color: #ff69b4;
+      font-weight: 600;
+    }
+
+    /* Label flotante */
+    label {
+      position: absolute;
+      left: 2px;
+      top: 8px;
+      color: #f08fb8;
+      font-style: italic;
+      font-size: 1.1rem;
+      pointer-events: none;
+      transition: 0.3s ease all;
+      background-color: transparent;
+      z-index: 2;
+    }
+
+    /* Cuando el input está enfocado o tiene texto, el label sube y se achica */
+    input:focus + label,
+    input:not(:placeholder-shown) + label {
+      top: -14px;
+      left: 2px;
+      font-size: 0.8rem;
+      color: #ff69b4;
+      font-style: normal;
+      font-weight: 700;
+      background-color: #fff0f5;
+      border-radius: 10px;
+      z-index: 3;
+    }
+
+    .login-container button {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin-top: 15px;
+      border-radius: 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    .login-container button:hover {
+      background-color: #ff69b4;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #d87093;
+    }
+
+    .error-message {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #ff333d;
+      margin-top: 3px;
+      display: block;
+      text-align: left;
+      padding-left: 5px;
+    }
+
+    .form-error-message {
+      color: #ff333d;
+      background-color: #ffd9e7;
+      border: 1px solid #ffb3c6;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-top: 15px;
+      font-size: 0.9rem;
+      display: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <img src="img/hello-kitty-login2.png" alt="Hello Kitty" />
+    <h1>Bienvenida</h1>
+    <form id="loginForm" novalidate>
+      <div class="input-group">
+        <input type="text" id="usuario" name="usuario" placeholder=" " required />
+        <label for="usuario">Usuario</label>
+        <span class="error-message" id="usuarioError"></span>
+      </div>
+      <div class="input-group">
+        <input type="password" id="contraseña" name="contraseña" placeholder=" " required />
+        <label for="contraseña">Contraseña</label>
+        <span class="error-message" id="contraseñaError"></span>
+      </div>
+      <div id="formError" class="form-error-message"></div>
+      <button type="submit">Entrar</button>
+    </form>
+    <div class="footer">🌸 SchedulerUwU 🌸</div>
+  </div>
+  <script src="cordova.js"></script>
+  <script type="module" src="js/constants.js"></script>
+  <script type="module" src="js/index.js"></script>
+  <script type="module" src="js/login.js"></script>
+</body>
+</html>

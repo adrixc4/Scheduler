@@ -28,32 +28,54 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="
-        default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval';
-        script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
-        style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net;
-        media-src *;
-        img-src 'self' data: content: https://cdn-icons-png.flaticon.com;
-        ">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
         <link rel="stylesheet" href="css/index.css">
-        <title>Manolo</title>
+        <title>SchedulerUwu</title>
     </head>
     <body>
         <div class="app">
             <h1>Que onda</h1>
-            <p class="version">Version: </p>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+            <p class="version"></p>
         </div>
         <script src="cordova.js"></script>
-        <script src="js/index.js"></script>
+        <script type="module" src="js/constants.js"></script>
+        <script type="module" src="js/index.js"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script type="module">
+            import { constants } from "./js/constants.js";
+            (async function () {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    // No hay token → Redirigir al login
+    window.location.href = "login.html";
+    return;
+  }
+
+  try {
+    const response = await fetch(constants.apiURL + "/usuario/validate", {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+
+    if (!response.ok) {
+      // Token inválido o expirado
+      localStorage.removeItem("token");
+      window.location.href = "login.html";
+    }
+    // Si el token es válido, sigue la ejecución normal
+  } catch (err) {
+    console.error("Error al validar el token:", err);
+    localStorage.removeItem("token");
+    window.location.href = "login.html";
+  }
+})();
+        </script>
     </body>
 </html>

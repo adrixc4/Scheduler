@@ -17,17 +17,18 @@
     "cordova-electron": "^4.0.0",
     "cordova-hot-code-push-plugin": "^1.5.3",
     "cordova-plugin-app-version": "^0.1.14",
-    "cordova-plugin-inappbrowser": "^6.0.0"
+    "cordova-plugin-inappbrowser": "^6.0.0",
+    "electron": "^36.4.0"
   },
   "build": {
     "appId": "com.tuempresa.miapp",
     "productName": "SchedulerUwu",
     "publish": [
-    {
-      "provider": "github",
-      "owner": "adrixc4",
-      "repo": "tu-repo"
-    }
+      {
+        "provider": "github",
+        "owner": "adrixc4",
+        "repo": "Scheduler"
+      }
     ],
     "win": {
       "target": [
@@ -37,8 +38,9 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "artifactName": "${productName} ${version}.${ext}",
-      "perMachine": true
+      "artifactName": "${productName}-${version}.${ext}",
+      "perMachine": false,
+      "differentialPackage": true
     }
   },
   "cordova": {
