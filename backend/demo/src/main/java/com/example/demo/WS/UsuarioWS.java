@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,6 +46,7 @@ public class UsuarioWS {
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody UsuarioVO loginRequest) {
+		System.out.println("Login: " + loginRequest);
 		try {
 			Optional<UsuarioVO> optionalUser = su.findByNombre(loginRequest.getNombre());
 
@@ -59,7 +61,7 @@ public class UsuarioWS {
 					return new ResponseEntity<>(Map.of("message", "Credenciales inválidas"), HttpStatus.UNAUTHORIZED);
 				}
 			} else {
-				return new ResponseEntity<>(Map.of("message", "Usuario no encontrado"), HttpStatus.NOT_FOUND);
+				return new ResponseEntity<>(Map.of("message", "Usuario no encontrado"), HttpStatus.UNAUTHORIZED);
 			}
 
 		} catch (Exception ex) {
@@ -71,5 +73,20 @@ public class UsuarioWS {
 	@GetMapping("/test")
 	public ResponseEntity<?> test() {
 		return new ResponseEntity<>("Hola", HttpStatus.OK);
+	}
+
+	@GetMapping("/validate")
+	public ResponseEntity<?> validateToken(@RequestHeader("Authorization") String authHeader) {
+		try {
+			String token = authHeader.replace("Bearer ", "");
+			System.out.println("Token: " + token);
+			if (jwtUtil.validateToken(token)) {
+				return ResponseEntity.ok().build();
+			} else {
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}
 	}
 }

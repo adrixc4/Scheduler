@@ -88,4 +88,9 @@ public class UsuarioVO {
 				&& Objects.equals(nombre, other.nombre) && Objects.equals(tipo, other.tipo);
 	}
 
+	@Override
+	public String toString() {
+		return "UsuarioVO [nombre=" + nombre + ", contraseña=" + contraseña + ", tipo=" + tipo + "]";
+	}
+
 }

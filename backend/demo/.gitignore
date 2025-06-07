@@ -33,4 +33,6 @@ build/
 .vscode/
 
 # .gitignore
+src/main/resources/
 src/main/resources/application.properties.local
+src/main/resources/application.properties
