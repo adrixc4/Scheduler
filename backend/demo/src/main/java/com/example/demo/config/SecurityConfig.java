@@ -33,8 +33,8 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable()) // Desactiva CSRF
 				.cors(cors -> cors.configurationSource(corsConfigurationSource())) // Activa CORS
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/usuario/add", "/usuario/login").permitAll()
-						.anyRequest().authenticated());
+				.authorizeHttpRequests(auth -> auth.requestMatchers("/usuario/add", "/usuario/login", "/usuario/test")
+						.permitAll().anyRequest().authenticated());
 
 		// Agregar filtro antes de UsernamePasswordAuthenticationFilter
 		http.addFilterBefore((Filter) jwtFilter, UsernamePasswordAuthenticationFilter.class);
